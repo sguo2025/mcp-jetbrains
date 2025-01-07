@@ -1,6 +1,6 @@
 {
   "name": "@jetbrains/mcp-proxy",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A MCP proxy to redirect requests to JetBrains IDEs",
   "main": "dist/src/index.js",
   "type": "module",
@@ -20,11 +20,11 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.0.3",
+    "@modelcontextprotocol/sdk": "1.1.0",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
+    "@types/node": "^22.10.5",
     "shx": "^0.3.4",
     "typescript": "^5.3.3"
   }
