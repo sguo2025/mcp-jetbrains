@@ -6,6 +6,8 @@ import {CallToolRequestSchema, CallToolResult, ListToolsRequestSchema,} from "@m
 // Logging is enabled only if LOG_ENABLED environment variable is set to 'true'
 const LOG_ENABLED = process.env.LOG_ENABLED === 'true';
 
+const HOST = process.env.HOST ?? "127.0.0.1"
+
 export function log(...args: any[]) {
     if (LOG_ENABLED) {
         console.error(...args);
@@ -92,7 +94,7 @@ async function findWorkingIDEEndpoint(): Promise<string> {
     // 1. If user specified a port, just use that
     if (process.env.IDE_PORT) {
         log(`IDE_PORT is set to ${process.env.IDE_PORT}. Testing this port.`);
-        const testEndpoint = `http://127.0.0.1:${process.env.IDE_PORT}/api`;
+        const testEndpoint = `http://${HOST}:${process.env.IDE_PORT}/api`;
         if (await testListTools(testEndpoint)) {
             log(`IDE_PORT ${process.env.IDE_PORT} is working.`);
             return testEndpoint;
@@ -104,7 +106,7 @@ async function findWorkingIDEEndpoint(): Promise<string> {
 
     // 2. Otherwise, scan a range of ports
     for (let port = 63342; port <= 63352; port++) {
-        const candidateEndpoint = `http://127.0.0.1:${port}/api`;
+        const candidateEndpoint = `http://${HOST}:${port}/api`;
         log(`Testing port ${port}...`);
         const isWorking = await testListTools(candidateEndpoint);
         if (isWorking) {

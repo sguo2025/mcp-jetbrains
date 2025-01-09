@@ -23,10 +23,26 @@ The full path on MacOS: `~/Library/Application\ Support/Claude/claude_desktop_co
 }
 ```
 
+## Configuration
+
 If you're running multiple IDEs with MCP server and want to connect to the specific one, add to the MCP server configuration:
 ```json
 "env": {
-  "IDE_PORT": "<port of built-in webserver>"
+  "IDE_PORT": "<port of IDE's built-in webserver>"
+}
+```
+
+By default, we connect to IDE on  127.0.0.1 but you can specify a different address/host:
+```json
+"env": {
+  "HOST": "<host/address of IDE's built-in webserver>"
+}
+```
+
+To enable logging add:
+```json
+"env": {
+  "LOG_ENABLED": "true"
 }
 ```
 
