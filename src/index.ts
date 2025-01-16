@@ -231,6 +231,9 @@ async function handleToolCall(name: string, args: any): Promise<CallToolResult> 
     }
 }
 
+// 1) Do an initial endpoint check (once at startup)
+await updateIDEEndpoint();
+
 /**
  * Request handler for "CallToolRequestSchema"
  */
@@ -260,9 +263,6 @@ async function runServer() {
         log("Error connecting server to transport:", error);
         throw error;
     }
-
-    // 1) Do an initial endpoint check (once at startup)
-    await updateIDEEndpoint();
 
     // 2) Then check again every 10 seconds (in case IDE restarts or ports change)
     setInterval(updateIDEEndpoint, 10_000);
