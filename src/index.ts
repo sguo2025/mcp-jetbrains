@@ -104,7 +104,13 @@ async function findWorkingIDEEndpoint(): Promise<string> {
         }
     }
 
-    // 2. Otherwise, scan a range of ports
+    // 2. Reuse existing endpoint if it's still working
+    if (cachedEndpoint != null && await testListTools(cachedEndpoint)) {
+        log('Using cached endpoint, it\'s still working')
+        return cachedEndpoint
+    }
+
+    // 3. Otherwise, scan a range of ports
     for (let port = 63342; port <= 63352; port++) {
         const candidateEndpoint = `http://${HOST}:${port}/api`;
         log(`Testing port ${port}...`);
