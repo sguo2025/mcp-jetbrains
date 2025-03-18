@@ -51,3 +51,7 @@ To enable logging add:
 2. `brew install node pnpm`
 3. Run `pnpm build` to build the project
 
+
+<a href="https://glama.ai/mcp/servers/k7xzbtlxvb">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/k7xzbtlxvb/badge" />
+</a>
